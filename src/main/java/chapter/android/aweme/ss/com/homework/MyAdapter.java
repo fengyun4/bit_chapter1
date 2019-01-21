@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -35,7 +36,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.NumberViewHolder> 
     @Override
     public NumberViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         Context context=viewGroup.getContext();
-        int layoutIdForListItem=R.layout.number_list_item;
+        int layoutIdForListItem=R.layout.im_list_item;
         LayoutInflater inflater=LayoutInflater.from(context);
         boolean shouldAttachToParentImmediately=false;
         View view=inflater.inflate(layoutIdForListItem,viewGroup,shouldAttachToParentImmediately);
@@ -65,6 +66,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.NumberViewHolder> 
         private TextView my_words;
         private TextView my_time;
         private CircleImageView my_image;
+        private ImageView my_official;
 
         public NumberViewHolder(@NonNull View itemView){
             super(itemView);
@@ -75,6 +77,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.NumberViewHolder> 
             my_words=(TextView)itemView.findViewById(R.id.tv_description);
             my_time=(TextView)itemView.findViewById(R.id.tv_time);
             my_image=(CircleImageView)itemView.findViewById(R.id.iv_avatar);
+            my_official=(ImageView)itemView.findViewById(R.id.robot_notice);
         }
 
         public void bind(int position){
@@ -84,12 +87,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.NumberViewHolder> 
             my_words.setText(mdata.get(position).getDescription());
             my_time.setText(mdata.get(position).getTime());
 
+            //图标有官方认证，要特殊判断
+            my_official.setImageResource(R.drawable.im_icon_notice_official);
+            if(mdata.get(position).isOfficial()){
+                my_official.setVisibility(View.VISIBLE);
+            }
+            else{
+                my_official.setVisibility(View.INVISIBLE);
+            }
 
             if(mdata.get(position).getIcon().equals("TYPE_ROBOT")){
                 my_image.setImageResource(R.drawable.session_robot);
             }
             else if(mdata.get(position).getIcon().equals("TYPE_SYSTEM")){
-                my_image.setImageResource(R.drawable.icon_blacksend_touch);
+                my_image.setImageResource(R.drawable.session_system_notice);
             }
             else if(mdata.get(position).getIcon().equals("TYPE_GAME")){
                 my_image.setImageResource(R.drawable.icon_micro_game_comment);
@@ -99,9 +110,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.NumberViewHolder> 
             }
             else if(mdata.get(position).getIcon().equals("TYPE_USER")){
                 my_image.setImageResource(R.drawable.icon_girl);
-            }
-            else if(mdata.get(position).getIcon().equals("TYPE_OFFICIAL")){
-                my_image.setImageResource(R.drawable.im_icon_notice_official);
             }
         }
         @Override

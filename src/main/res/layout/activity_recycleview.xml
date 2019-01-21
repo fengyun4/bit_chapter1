@@ -11,6 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layoutManager="android.support.v7.widget.LinearLayoutManager"
-        tools:listitem="@layout/number_list_item"/>
+        tools:listitem="@layout/im_list_item"/>
 
 </LinearLayout>

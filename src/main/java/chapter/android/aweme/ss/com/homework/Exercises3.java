@@ -1,5 +1,6 @@
 package chapter.android.aweme.ss.com.homework;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -19,12 +20,12 @@ import chapter.android.aweme.ss.com.homework.model.PullParser;
  */
 public class Exercises3 extends AppCompatActivity implements MyAdapter.ListItemClickListener {
 
-    private static final String TAG = "This is the  Exercise_third";
+    private static final String TAG = "This is the Exercise_third";
 
     private MyAdapter myAdapter;
     public List<Message>messages;
-
     private RecyclerView recyclerView;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +51,8 @@ public class Exercises3 extends AppCompatActivity implements MyAdapter.ListItemC
 
     @Override
     public void onListItemClick(int clickedItemIndex) {
-
+        Intent intent=new Intent(this,Chatroom.class);
+        intent.putExtra("message",messages.get(clickedItemIndex).getTitle());
+        startActivity(intent);
     }
 }
