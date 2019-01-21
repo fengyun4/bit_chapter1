@@ -78,6 +78,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.NumberViewHolder> 
             my_time=(TextView)itemView.findViewById(R.id.tv_time);
             my_image=(CircleImageView)itemView.findViewById(R.id.iv_avatar);
             my_official=(ImageView)itemView.findViewById(R.id.robot_notice);
+            itemView.setOnClickListener(this);
         }
 
         public void bind(int position){

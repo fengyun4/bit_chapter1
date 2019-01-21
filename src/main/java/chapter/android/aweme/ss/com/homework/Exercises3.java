@@ -51,8 +51,6 @@ public class Exercises3 extends AppCompatActivity implements MyAdapter.ListItemC
 
     @Override
     public void onListItemClick(int clickedItemIndex) {
-        Intent intent=new Intent(this,Chatroom.class);
-        intent.putExtra("message",messages.get(clickedItemIndex).getTitle());
-        startActivity(intent);
+
     }
 }
